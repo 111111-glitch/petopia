@@ -1,0 +1,81 @@
+/* NavBar.css */
+
+.navbar {
+    background-color: #E9CDCE !important;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.navbar-nav {
+    display: flex; /* Change to flex display */
+    align-items: center; /* Align items vertically */
+}
+
+.navbar-brand {
+    font-size: 1.5rem;
+    font-weight: bold;
+    color: black !important;
+}
+
+.navbar-toggler {
+    border: none;
+}
+
+.navbar-toggler-icon {
+    background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' width='30' height='30' viewBox='0 0 30 30'%3e%3cpath stroke='rgba%28255, 111, 97, 1%29' stroke-linecap='round' stroke-miterlimit='10' stroke-width='2' d='M4 7h22M4 15h22M4 23h22'/%3e%3c/svg%3e");
+}
+
+.navbar-nav .nav-item .nav-link {
+    font-size: 1.2rem;
+    color: #343a40 !important;
+    padding: 0.5rem 1rem;
+    transition: color 0.3s;
+}
+
+.navbar-nav .nav-item .nav-link.active,
+.navbar-nav .nav-item .nav-link:hover {
+    color: black !important;
+}
+
+.search-form {
+    display: flex;
+    align-items: center;
+    margin-left: auto; /* Ensures the search form is pushed to the right */
+    width: 500px;
+    margin-top: 40px;
+    margin-right: 400px;
+}
+
+.form-control {
+    width: 300px;
+    transition: width 0.5s;
+    border-radius: 20px 20px 20px 20px; /* Rounded left corners */
+    border: 1px solid black; /* Ensure border matches button */
+}
+
+.form-control:focus {
+    width: 300px;
+    border-radius: 20px 20px 20px 20px; /* Ensure rounded corners remain on focus */
+}
+
+.search-button {
+    font-size: 0.875rem; /* Reduce font size */
+    padding: 0.5rem 0.5rem; /* Adjust padding for smaller size */
+    height: fit-content; /* Ensure button height fits content */
+    margin-left: -1px; /* Remove space between input and button */
+    border-radius: 20px 20px 20px 20px; /* Rounded right corners */
+    border: 1px solid black; /* Ensure border matches input */
+    margin-bottom: 40px;
+    height: auto;
+    background: #d2b48c;
+}
+.search-button:hover{
+    background-color: #332421;
+}
+
+/* Adjust size of login logo */
+.navbar-nav .nav-item .nav-link img {
+    width: 30px; /* Adjust width of the login logo */
+    height: 30px; /* Adjust height of the login logo */
+    margin-right: 40px;
+    margin-top: 10px;
+}
