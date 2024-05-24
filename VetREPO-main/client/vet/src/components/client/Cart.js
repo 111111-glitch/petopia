@@ -1,13 +1,9 @@
-import React, { useState, useEffect, useContext } from 'react';
+import React, { useState, useEffect } from 'react';
 import './Cart.css';
-import { cartContext } from '../context/Context';
 import { NavLink } from 'react-router-dom';
 
 function Cart() {
-    const globalState = useContext(cartContext);
-    const state = globalState.state;
-    const dispatch = globalState.dispatch;
-
+    const [cartItems, setCartItems] = useState([]);
     const [loading, setLoading] = useState(false);
     const [error, setError] = useState(null);
     const [success, setSuccess] = useState(false);
@@ -24,7 +20,7 @@ function Cart() {
                 });
                 if (response.ok) {
                     const data = await response.json();
-                    dispatch({ type: 'SET_CART', payload: data.cart_items });
+                    setCartItems(data.cart_items);
                 } else {
                     setError('Failed to fetch cart items');
                 }
@@ -35,11 +31,7 @@ function Cart() {
             }
         };
         fetchCartItems();
-    }, [dispatch]);
-
-    const total = state.reduce((total, item) => {
-        return total + item.price * item.quantity;
-    }, 0);
+    }, []);
 
     const handlePlaceOrder = async () => {
         setLoading(true);
@@ -47,20 +39,20 @@ function Cart() {
         setSuccess(false);
 
         try {
-            const res = await fetch('http://127.0.0.1:5555/orders', {
+            const res = await fetch('http://127.0.0.1:5555/userProductOrders', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
                 },
                 body: JSON.stringify({
-                    total: total,
-                    items: state.map(item => ({ id: item.id, quantity: item.quantity })),
+                    total: cartItems.reduce((total, item) => total + item.price * item.quantity, 0),
+                    items: cartItems.map(item => ({ id: item.id, quantity: item.quantity })),
                 }),
             });
 
             if (res.ok) {
                 setSuccess(true);
-                dispatch({ type: 'CLEAR_CART' });
+                setCartItems([]);
             } else {
                 setError('Failed to place order');
             }
@@ -72,12 +64,32 @@ function Cart() {
         }
     };
 
+    const handleRemove = (itemToRemove) => {
+        setCartItems(cartItems.filter(item => item.id !== itemToRemove.id));
+    };
+
+    const handleIncrease = (itemToIncrease) => {
+        setCartItems(cartItems.map(item => 
+            item.id === itemToIncrease.id ? { ...item, quantity: item.quantity + 1 } : item
+        ));
+    };
+
+    const handleDecrease = (itemToDecrease) => {
+        setCartItems(cartItems.map(item => 
+            item.id === itemToDecrease.id && item.quantity > 1 ? { ...item, quantity: item.quantity - 1 } : item
+        ));
+    };
+
+    const total = cartItems.reduce((total, item) => {
+        return total + item.price * item.quantity;
+    }, 0);
+
     return (
         <div className="client-cart-page">
-            {state.length === 0 ? (
+            {cartItems.length === 0 ? (
                 <div className="empty-cart">
                     <h2>Your cart is empty</h2>
-                    <img src="https://cdn.dribbble.com/users/2046015/screenshots/4591856/media/99db7af8c3d839dd65017f76ae434785.gif" alt="Empty Cart" />
+                    <img src="https://cdn.dribbble.com/users/675297/screenshots/4334597/basti.gif" alt="Empty Cart" />
                 </div>            
             ) : (
                 <>
@@ -89,29 +101,23 @@ function Cart() {
                             <h4>Quantity</h4>
                             <h4>Total</h4>
                         </div>
-                        {state.map((item, index) => (
+                        {cartItems.map((item, index) => (
                             <div className="client-cart-card" key={index}>
                                 <div className="product-details">
                                     <img src={item.image_url} alt={item.name} />
                                     <div className="product-name">
                                         <p>{item.name}</p>
-                                        <button onClick={() => dispatch({ type: 'REMOVE', payload: item })}>Remove</button>
+                                        <button onClick={() => handleRemove(item)}>Remove</button>
                                     </div>   
                                 </div>
                                 <p>${item.price}</p>
                                 <div className="quantity">
                                     <button 
-                                        onClick={() => {
-                                            if (item.quantity > 1) {
-                                                dispatch({ type: 'DECREASE', payload: item });
-                                            } else {
-                                                dispatch({ type: 'REMOVE', payload: item });
-                                            }
-                                        }}
+                                        onClick={() => handleDecrease(item)}
                                         disabled={item.quantity <= 1}
                                     >-</button>
                                     <span>{item.quantity}</span>
-                                    <button onClick={() => dispatch({ type: 'INCREASE', payload: item })}>+</button>
+                                    <button onClick={() => handleIncrease(item)}>+</button>
                                 </div>
                                 <p className='total-price'>${item.quantity * item.price}</p>
                             </div>

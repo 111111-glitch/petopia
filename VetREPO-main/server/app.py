@@ -103,7 +103,7 @@ class UserLogin(Resource):
             return jsonify({'error': 'Unauthorized, incorrect password'}), 401
         
         # Generate access token with role included
-        access_token = create_access_token(identity={'username': username, 'role': 'client'})
+        access_token = create_access_token(identity={'username': username, 'role': 'client','id':user.id})
 
         return jsonify({
             "id": user.id,
@@ -345,9 +345,11 @@ class ShoppingCart(Resource):
             return jsonify(serialized_cart), 200
         else:
             return {'message': 'Cart not found'}, 404
-        
+    @jwt_required()    
     def post(self):
         current_user_id = get_jwt_identity()
+        
+        id = current_user_id['id']
         data = request.json
 
         try:
@@ -369,7 +371,7 @@ class ShoppingCart(Resource):
             # Create a new cart item object based on the presence of product_id 
             if product_id:
                 new_cart_item = CartItem(
-                    cart_id=current_user_id,
+                    cart_id=id,
                     product_id=product_id,
                     quantity=quantity
                 )
@@ -384,7 +386,8 @@ class ShoppingCart(Resource):
             serialized_cart_item = new_cart_item.to_dict()
 
             # Return the serialized cart item as the response
-            return jsonify(serialized_cart_item), 201
+            # return jsonify(serialized_cart_item), 201
+            return {'message': 'Cart item added successfully'}, 201
 
         except Exception as e:
             db.session.rollback()

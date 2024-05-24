@@ -19,6 +19,7 @@ import PatchProduct from './components/admin/PatchProduct';
 import PatchService from './components/admin/PatchService';
 import History from './components/admin/History';
 import ProductDetail from './components/client/ProductPage';
+import Cart from './components/client/Cart';
 
 
 
@@ -34,6 +35,7 @@ function App() {
         <Route path='/products' element={<Products />} />
         <Route path='/products/:id' component={ProductDetail} />
         <Route path='/services' element={<Services />} />
+        <Route path='/cart' element={<Cart />} />
         
       </Routes>
 
