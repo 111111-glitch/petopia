@@ -25,7 +25,7 @@ const Products = ({ addToCart }) => {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
-          // 'Authorization': `Bearer ${localStorage.getItem('token')}` // Assuming JWT is stored in localStorage
+          'Authorization': `Bearer ${localStorage.getItem('token')}` // Assuming JWT is stored in localStorage
         },
         body: JSON.stringify({ product_id: product.id, quantity: 1 }),
       });

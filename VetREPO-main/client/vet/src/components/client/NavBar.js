@@ -8,6 +8,7 @@ const Navbar = () => {
     // Check if the current path is login or register
     const isLoginPage = location.pathname === '/login';
     const isRegisterPage = location.pathname === '/register';
+    
 
     // Cart items state
     const [cartItems, setCartItems] = useState([]);
@@ -37,7 +38,7 @@ const Navbar = () => {
                 <div className="collapse navbar-collapse" id="navbarScroll">
                     <ul className="navbar-nav navbar-nav-scroll" style={{ '--bs-scroll-height': '100px' }}>
                         <NavLink className="navbar-brand" to="#">
-                            <b>PETOPIA</b>
+                            <b>Petopia</b>
                         </NavLink>
                         <button
                             className="navbar-toggler"
@@ -53,19 +54,19 @@ const Navbar = () => {
 
                         <ul className="nav-item">
                             <NavLink className="nav-link active" aria-current="page" to="/">
-                                HOME
+                                Home
                             </NavLink>
                         </ul>
 
                         <ul className="nav-item">
                             <NavLink className="nav-link" to="/products">
-                                PRODUCTS
+                                Products
                             </NavLink>
                         </ul>
 
                         <ul className="nav-item">
                             <NavLink className="nav-link" to="/services">
-                                SERVICES
+                                Services
                             </NavLink>
                         </ul>
 
@@ -82,10 +83,12 @@ const Navbar = () => {
                         </form>
 
                         <ul className="nav-item">
-                            <NavLink className="nav-link" to="/cart">
-                                <img src="https://iconape.com/wp-content/png_logo_vector/shopping-cart.png" alt="Cart" />
-                                <span className="cart-count">{totalQuantity}</span> {/* Display cart item count */}
-                            </NavLink>
+                            <div className="cart-icon">
+                                <NavLink className="nav-link" to="/cart">
+                                    <img src="https://iconape.com/wp-content/png_logo_vector/shopping-cart.png" alt="Cart" />
+                                    {totalQuantity > 0 && <span className="cart-count">{totalQuantity}</span>} {/* Display cart item count */}
+                                </NavLink>
+                            </div>
                         </ul>
 
                         <ul className="nav-item">

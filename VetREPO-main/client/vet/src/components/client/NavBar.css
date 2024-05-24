@@ -1,13 +1,13 @@
 /* NavBar.css */
 
 .navbar {
-    background-color: #E9CDCE !important;
+    background-color: #d7c5b455 !important;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
 
 .navbar-nav {
-    display: flex; /* Change to flex display */
-    align-items: center; /* Align items vertically */
+    display: flex;
+    align-items: center;
 }
 
 .navbar-brand {
@@ -39,7 +39,7 @@
 .search-form {
     display: flex;
     align-items: center;
-    margin-left: auto; /* Ensures the search form is pushed to the right */
+    margin-left: auto;
     width: 500px;
     margin-top: 40px;
     margin-right: 400px;
@@ -48,35 +48,63 @@
 .form-control {
     width: 400px;
     transition: width 0.5s;
-    /* border-radius: 20px 20px 20px 20px; Rounded left corners */
-    border: 1px solid black; /* Ensure border matches button */
+    border: 1px solid black;
 }
 
 .form-control:focus {
     width: 300px;
-    border-radius: 20px 20px 20px 20px; /* Ensure rounded corners remain on focus */
+    border-radius: 20px;
 }
 
 .search-button {
-    font-size: 0.875rem; /* Reduce font size */
-    padding: 0.5rem 0.5rem; /* Adjust padding for smaller size */
-    height: fit-content; /* Ensure button height fits content */
-    margin-left: -1px; /* Remove space between input and button */
-    border-radius: 20px 20px 20px 20px; /* Rounded right corners */
-    border: 1px solid black; /* Ensure border matches input */
+    font-size: 0.875rem;
+    padding: 0.5rem 0.5rem;
+    height: fit-content;
+    margin-left: -1px;
+    border-radius: 20px;
+    border: 1px solid black;
     margin-bottom: 40px;
     height: auto;
     background: #d2b48c;
 }
-.search-button:hover{
+
+.search-button:hover {
     background-color: #332421;
     color: white;
 }
 
-/* Adjust size of login logo */
 .navbar-nav .nav-item .nav-link img {
-    width: 30px; /* Adjust width of the login logo */
-    height: 30px; /* Adjust height of the login logo */
+    width: 30px;
+    height: 30px;
     margin-right: 40px;
     margin-top: 10px;
+}
+
+/* Styling for the cart count badge */
+.cart-icon {
+    position: relative;
+    display: flex;
+    align-items: center;
+}
+
+.cart-icon img {
+    width: 30px;
+    height: 30px;
+    margin-right: 10px;
+}
+
+.cart-count {
+    position: absolute;
+    top: 0;
+    right: 0;
+    transform: translate(50%, -50%);
+    background-color: chocolate; /* Change background color to black */
+    color: #fff; /* Change text color to white */
+    border-radius: 50%;
+    padding: 2px 6px;
+    font-size: 0.8rem;
+    font-weight: bold;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }

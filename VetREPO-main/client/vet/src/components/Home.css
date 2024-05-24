@@ -24,28 +24,61 @@
     top: 30%;
     left: 5%;
     width: 40%;
+    font-size: 20px;
     }
     
-    .home-header-text h4 {
-    text-transform: uppercase;
+    .home-header-text h4{
     font-weight: normal;
     }
     
     .home-header-text h1 {
     font-size: 70px;
-    text-transform: uppercase;
     font-weight: normal;
+    margin-left: 100px;
     }
     
     .home-header-text p {
     color: #222121;
     margin-top: 10px;
     line-height: 1.5rem;
-    font-family: "Roboto", sans-serif;
     max-width: 90%;
+    margin-left: 100px;
+    }
+    .home-header-btn {
+    display: flex;
+    justify-content: flex-start;
+    margin-top: 700px;
+    margin-right: 0; /* Remove margin to align button to the far left */
+    }
+    
+    
+    .home-header-btn button {
+        background-color: #d2b48c;
+        color: #fff;
+        padding: 10px 20px;
+        border: none;
+        border-radius: 20px;
+        cursor: pointer;
+        font-size: 1rem;
+        transition: background-color 0.3s;
+    }
+    
+    .home-header-btn button:hover {
+        background-color: #332421;
+    }
+    .home-header img{
+        height: 600px;
+        width: 700px;   
+        margin-right: 200px;
+        margin-top: 100px;
+        box-shadow: 10px;
+        border-radius: 20px 20px 20px 20px;
     }
     
     /* Middle Section */
+    .home-mid{
+        margin-top: 200px;
+    }
     .home-mid-text {
     text-align: center;
     margin-top: 100px;
@@ -72,6 +105,7 @@
     height: 380px;
     width: 300px;
     transition: transform 0.3s ease; 
+    border-radius: 20px 20px 20px 20px;
     }
     
     .home-mid-content img:hover {
@@ -99,17 +133,16 @@
     }
     
     .home-lower-text {
-    max-width: 300px;
+    max-width: 600px;
     margin: 200px 0;
-    margin-left: 90px;
+    margin-left: 200px;
     /* font-family: "Cinzel", serif;*/
+
     
     }
     
     .home-lower-text h4, h2{
-    font-family: "Cinzel", serif;
     font-weight: normal;
-    text-transform: uppercase;
     }
     
     .home-lower-text h2{
@@ -117,20 +150,20 @@
     }
     
     .home-lower-text p {
-    font-size: 17px;
+    font-size: 20px;
     color: #4c4c4c;
     line-height: 2.0;
-    font-family: "Roboto", sans-serif;
     }
     
     .home-lower-right {
     position: relative;
-    margin-right: 90px;
+    margin-right: 200px;
     }
     
     .home-lower-right img{
-    height: 700px;
-    width: 550px;
+    height: 650px;
+    width: 650px;
+    margin-top: 200px;
     }
     
     /* Why Choose Us Section */
@@ -144,12 +177,10 @@
     
     .why-choose-us-container h4{
     font-weight: normal;
-    text-transform: uppercase;
     }
     
     .why-choose-us-container h2{
     font-size: 50px;
-    text-transform: uppercase;
     font-weight: normal;
     
     }
