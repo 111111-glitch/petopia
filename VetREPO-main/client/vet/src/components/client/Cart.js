@@ -12,10 +12,11 @@ function Cart() {
         const fetchCartItems = async () => {
             setLoading(true);
             try {
-                const response = await fetch('http://127.0.0.1:5555/userCart', {
+                const response = await fetch('/userCart', { // Relative URL
                     method: 'GET',
                     headers: {
                         'Content-Type': 'application/json',
+                        'Authorization': `Bearer ${localStorage.getItem('token')}` 
                     }
                 });
                 if (response.ok) {
@@ -39,7 +40,7 @@ function Cart() {
         setSuccess(false);
 
         try {
-            const res = await fetch('http://127.0.0.1:5555/userProductOrders', {
+            const res = await fetch('/userProductOrders', { // Relative URL
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',

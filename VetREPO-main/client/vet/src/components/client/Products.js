@@ -19,8 +19,31 @@ const Products = ({ addToCart }) => {
     setSelectedProduct(product);
   };
 
+  const fetchCartItems = async () => {
+    try {
+        const response = await fetch('/userCart', {
+            method: 'GET',
+            headers: {
+                'Content-Type': 'application/json',
+                'Authorization': `Bearer ${localStorage.getItem('token')}` 
+            }
+        });
+        if (response.ok) {
+            const data = await response.json();
+            console.log(data)
+        } else{
+            console.log('Failed to fetch cart items');
+        }
+    } catch (error) {
+        console.log('An error occurred while fetching cart items', error.message);
+    } finally {
+       console.log("completed the operation")
+    }
+};
+
   const handleAddToCart = async (product) => {
     try {
+      console.log(product)
       const response = await fetch('/userCart', {
         method: 'POST',
         headers: {
@@ -32,7 +55,14 @@ const Products = ({ addToCart }) => {
 
       if (response.ok) {
         const cartItem = await response.json();
-        addToCart(cartItem);
+        console.log("Added successfully",cartItem)
+        
+        // addToCart(cartItem);
+
+        fetchCartItems()
+
+///
+
       } else {
         console.error('Failed to add item to cart');
       }
