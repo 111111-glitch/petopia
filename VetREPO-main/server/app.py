@@ -15,6 +15,8 @@ app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///app.db'
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 
 CORS(app)
+# CORS(app, origin= '*')
+
 
 migrate = Migrate(app, db)
 
@@ -320,6 +322,7 @@ api.add_resource(ProductOrders,"/userProductOrders")
 
 
 class ShoppingCart(Resource):
+    print("Function fired")
     @jwt_required()
     def get(self):
         # Retrieve current user's ID
@@ -351,6 +354,7 @@ class ShoppingCart(Resource):
         
         id = current_user_id['id']
         data = request.json
+        print(data)
 
         try:
             # Extract product or service ID and quantity from request data
