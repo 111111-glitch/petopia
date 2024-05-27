@@ -66,23 +66,30 @@ function Cart() {
         }
     };
 
-    const handleRemove = async (itemToRemove) => {
+    const handleRemoveItem = async (itemId) => {
+        setLoading(true);
+        setError(null);
+        setSuccess(false);
+
         try {
-            const res = await fetch(`/userCart/${itemToRemove.id}`, {
+            const res = await fetch(`/userCart/${itemId}`, {
                 method: 'DELETE',
                 headers: {
                     'Content-Type': 'application/json',
                     'Authorization': `Bearer ${localStorage.getItem('token')}`
-                }
+                },
             });
+
             if (res.ok) {
-                setCartItems(cartItems.filter(item => item.id !== itemToRemove.id));
+                setCartItems(cartItems.filter(item => item.id !== itemId));
             } else {
                 setError('Failed to remove item from cart');
             }
         } catch (error) {
             console.error('Error:', error);
-            setError('An error occurred while removing the item from the cart');
+            setError('An error occurred while removing the item');
+        } finally {
+            setLoading(false);
         }
     };
 
@@ -162,7 +169,7 @@ function Cart() {
                                     <img src={item.image_url} alt={item.name} />
                                     <div className="product-name">
                                         <p>{item.name}</p>
-                                        <button onClick={() => handleRemove(item)}>Remove</button>
+                                        <button onClick={() => handleRemoveItem(item.id)}>Remove</button>
                                     </div>   
                                 </div>
                                 <p>ksh{item.price}</p>
