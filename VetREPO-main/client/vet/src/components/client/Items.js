@@ -84,12 +84,12 @@ const Items=()=>{
       </select>
       <div className="product-grid">
         {products.map((product) => (
-          <div key={product.id}>
+          <div key={product.id} className="product-item">
             <div onClick={() => handleProductClick(product)}>
               <img src={product.image_url} alt={product.name} />
               <h3>{product.name}</h3>
               <p>{product.description}</p>
-              <p>Price: ${product.price}</p>
+              <p>Price: ksh{product.price}</p>
             </div>
             {selectedProduct && selectedProduct.id === product.id && (
               <div>
@@ -100,7 +100,6 @@ const Items=()=>{
           </div>
         ))}
       </div>
-      
     </div>
   );
 };

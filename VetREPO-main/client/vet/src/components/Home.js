@@ -71,7 +71,7 @@ const Home = () => {
         <div className="home-mid-content">
         <img src="https://cdn0.woolworths.media/content/wowproductimages/large/847710.jpg" alt="" />
         <h3>SEA FOOD</h3>
-        <p>USD $90</p>
+        <p>USD ksh90</p>
         </div>
         </div>
         </div>

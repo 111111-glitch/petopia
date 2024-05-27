@@ -4,7 +4,7 @@ import './Services.css';
 const Services = ({ addToCart }) => {
   const [services, setServices] = useState([]);
   const [selectedService, setSelectedService] = useState(null);
-  const [displayOption, setDisplayOption] = useState('Default');
+  const [sortOption, setSortOption] = useState('Default');
 
   useEffect(() => {
     fetch('/userproducts')
@@ -15,24 +15,48 @@ const Services = ({ addToCart }) => {
       });
   }, []);
 
+  const fetchCartItems = async () => {
+    try {
+      const response = await fetch('/userCart', {
+        method: 'GET',
+        headers: {
+          'Content-Type': 'application/json',
+          'Authorization': `Bearer ${localStorage.getItem('token')}` 
+        }
+      });
+      if (response.ok) {
+        const data = await response.json();
+        console.log(data)
+      } else {
+        console.log('Failed to fetch cart items');
+      }
+    } catch (error) {
+      console.log('An error occurred while fetching cart items', error.message);
+    } finally {
+      console.log("completed the operation")
+    }
+  };
+
   const handleServiceClick = (service) => {
     setSelectedService(service);
   };
 
   const handleAddToCart = async (service) => {
     try {
+      console.log(service)
       const response = await fetch('/userCart', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
-          // 'Authorization': `Bearer ${localStorage.getItem('token')}` // Assuming JWT is stored in localStorage
+          'Authorization': `Bearer ${localStorage.getItem('token')}` 
         },
         body: JSON.stringify({ product_id: service.id, quantity: 1 }),
       });
 
       if (response.ok) {
         const cartItem = await response.json();
-        addToCart(cartItem);
+        console.log("Added successfully", cartItem)
+        fetchCartItems()
       } else {
         console.error('Failed to add item to cart');
       }
@@ -41,9 +65,9 @@ const Services = ({ addToCart }) => {
     }
   };
 
-  const handleDisplay = (event) => {
+  const handleSort = (event) => {
     const option = event.target.value;
-    setDisplayOption(option);
+    setSortOption(option);
     let sortedServices = [...services];
 
     switch (option) {
@@ -65,12 +89,12 @@ const Services = ({ addToCart }) => {
 
   return (
     <div>
-      <h2>DISPLAY VIEW</h2>
-      <select value={displayOption} onChange={handleDisplay}>
-        <option value="Default">Default Display</option>
-        <option value="Title">Display By Name</option>
-        <option value="Price-low"> By Price: low to high</option>
-        <option value="Price-high">By Price: high to low</option>
+      <h2>SERVICES</h2>
+      <select value={sortOption} onChange={handleSort}>
+        <option value="Default">DEFAULT VIEW</option>
+        <option value="Title">VIEW BY NAME</option>
+        <option value="Price-low">By Price: low to high</option>
+        <option value="Price-high"> Price: high to low</option>
       </select>
       <div className="services-container">
         {services.map((service) => (
@@ -82,8 +106,7 @@ const Services = ({ addToCart }) => {
               <p>{service.description}</p>
             </div>
             {selectedService && selectedService.id === service.id && (
-              <div>
-                <p>{service.description}</p>
+              <div className='addToCart'>
                 <button onClick={() => handleAddToCart(service)}>Add to Cart</button>
               </div>
             )}

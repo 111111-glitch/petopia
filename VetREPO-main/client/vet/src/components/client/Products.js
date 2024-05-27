@@ -112,7 +112,7 @@ const Products = ({ addToCart }) => {
               <p>Price: ksh{product.price}</p>
             </div>
             {selectedProduct && selectedProduct.id === product.id && (
-              <div>
+              <div className="addToCart">
                 <button onClick={() => handleAddToCart(product)}>Add to Cart</button>
               </div>
             )}

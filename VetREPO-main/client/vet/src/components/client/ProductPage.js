@@ -1,7 +1,8 @@
+
 import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 
-const ProductDetail = () => {
+const ProductPage = () => {
   const { id } = useParams();
   const [product, setProduct] = useState(null);
   const [loading, setLoading] = useState(true);
@@ -32,6 +33,7 @@ const ProductDetail = () => {
     <div>
       {product ? (
         <div>
+          <img src={product.image_url} alt={product.name} />
           <h1>{product.name}</h1>
           <p>{product.description}</p>
           <p>Price: ${product.price}</p>
@@ -43,4 +45,4 @@ const ProductDetail = () => {
   );
 };
 
-export default ProductDetail;
+export default ProductPage;

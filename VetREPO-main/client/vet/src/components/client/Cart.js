@@ -12,16 +12,16 @@ function Cart() {
         const fetchCartItems = async () => {
             setLoading(true);
             try {
-                const response = await fetch('/userCart', { // Relative URL
+                const response = await fetch('/userCart', {
                     method: 'GET',
                     headers: {
                         'Content-Type': 'application/json',
-                        'Authorization': `Bearer ${localStorage.getItem('token')}` 
+                        'Authorization': `Bearer ${localStorage.getItem('token')}`
                     }
                 });
                 if (response.ok) {
                     const data = await response.json();
-                    setCartItems(data.cart_items);
+                    setCartItems(data);
                 } else {
                     setError('Failed to fetch cart items');
                 }
@@ -40,10 +40,11 @@ function Cart() {
         setSuccess(false);
 
         try {
-            const res = await fetch('/userProductOrders', { // Relative URL
+            const res = await fetch('/userProductOrders', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
+                    'Authorization': `Bearer ${localStorage.getItem('token')}`
                 },
                 body: JSON.stringify({
                     total: cartItems.reduce((total, item) => total + item.price * item.quantity, 0),
@@ -65,20 +66,73 @@ function Cart() {
         }
     };
 
-    const handleRemove = (itemToRemove) => {
-        setCartItems(cartItems.filter(item => item.id !== itemToRemove.id));
+    const handleRemove = async (itemToRemove) => {
+        try {
+            const res = await fetch(`/userCart/${itemToRemove.id}`, {
+                method: 'DELETE',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'Authorization': `Bearer ${localStorage.getItem('token')}`
+                }
+            });
+            if (res.ok) {
+                setCartItems(cartItems.filter(item => item.id !== itemToRemove.id));
+            } else {
+                setError('Failed to remove item from cart');
+            }
+        } catch (error) {
+            console.error('Error:', error);
+            setError('An error occurred while removing the item from the cart');
+        }
     };
 
-    const handleIncrease = (itemToIncrease) => {
-        setCartItems(cartItems.map(item => 
-            item.id === itemToIncrease.id ? { ...item, quantity: item.quantity + 1 } : item
-        ));
+    const handleIncrease = async (itemToIncrease) => {
+        try {
+            const updatedQuantity = itemToIncrease.quantity + 1;
+            const res = await fetch(`/userCart/${itemToIncrease.id}`, {
+                method: 'PATCH',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'Authorization': `Bearer ${localStorage.getItem('token')}`
+                },
+                body: JSON.stringify({ quantity: updatedQuantity })
+            });
+            if (res.ok) {
+                setCartItems(cartItems.map(item => 
+                    item.id === itemToIncrease.id ? { ...item, quantity: updatedQuantity } : item
+                ));
+            } else {
+                setError('Failed to update item quantity');
+            }
+        } catch (error) {
+            console.error('Error:', error);
+            setError('An error occurred while updating the item quantity');
+        }
     };
 
-    const handleDecrease = (itemToDecrease) => {
-        setCartItems(cartItems.map(item => 
-            item.id === itemToDecrease.id && item.quantity > 1 ? { ...item, quantity: item.quantity - 1 } : item
-        ));
+    const handleDecrease = async (itemToDecrease) => {
+        if (itemToDecrease.quantity <= 1) return;
+        try {
+            const updatedQuantity = itemToDecrease.quantity - 1;
+            const res = await fetch(`/userCart/${itemToDecrease.id}`, {
+                method: 'PATCH',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'Authorization': `Bearer ${localStorage.getItem('token')}`
+                },
+                body: JSON.stringify({ quantity: updatedQuantity })
+            });
+            if (res.ok) {
+                setCartItems(cartItems.map(item => 
+                    item.id === itemToDecrease.id ? { ...item, quantity: updatedQuantity } : item
+                ));
+            } else {
+                setError('Failed to update item quantity');
+            }
+        } catch (error) {
+            console.error('Error:', error);
+            setError('An error occurred while updating the item quantity');
+        }
     };
 
     const total = cartItems.reduce((total, item) => {
@@ -111,7 +165,7 @@ function Cart() {
                                         <button onClick={() => handleRemove(item)}>Remove</button>
                                     </div>   
                                 </div>
-                                <p>${item.price}</p>
+                                <p>ksh{item.price}</p>
                                 <div className="quantity">
                                     <button 
                                         onClick={() => handleDecrease(item)}
@@ -120,12 +174,12 @@ function Cart() {
                                     <span>{item.quantity}</span>
                                     <button onClick={() => handleIncrease(item)}>+</button>
                                 </div>
-                                <p className='total-price'>${item.quantity * item.price}</p>
+                                <p className='total-price'>ksh{item.quantity * item.price}</p>
                             </div>
                         ))}
                         <div className="total">
                             <h4>Subtotal</h4>
-                            <h4>${total}</h4>
+                            <h4>ksh{total}</h4>
                         </div>
                         <div className="checkout-button">
                             <button className='button' onClick={handlePlaceOrder} disabled={loading}>
@@ -135,7 +189,7 @@ function Cart() {
                             {success && <p className="success">Order placed successfully!</p>}
                         </div>
                         <div className="continue-shopping">
-                            <NavLink className="client-nav-link" to='/client/products'> Continue Shopping</NavLink>
+                            <NavLink className="client-nav-link" to='/products'> Continue Shopping</NavLink>
                         </div>
                     </div>
                 </>
