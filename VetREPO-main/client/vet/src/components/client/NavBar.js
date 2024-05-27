@@ -12,14 +12,36 @@ const Navbar = () => {
     useEffect(() => {
         const storedRole = localStorage.getItem('role');
         setRole(storedRole);
-
+        console.log('User is logged in:', storedRole);
+        console.log('User is logged in');
         // Fetch or set cart items here
         setCartItems([]);
     }, []);
 
     const totalQuantity = cartItems.reduce((acc, item) => acc + item.quantity, 0);
 
-    if (isLoginPage || isRegisterPage || role === 'client') {
+    const handleLogout = async () => {
+        try {
+            const response = await fetch('/userLogout', {
+                method: 'POST',
+                headers: {
+                    'Authorization': `Bearer ${localStorage.getItem('token')}` // Include the access token in the request headers
+                }
+            });
+            if (response.ok) {
+                // Clear local storage and redirect to login page
+                localStorage.removeItem('token');
+                localStorage.removeItem('role');
+                window.location.href = '/login';
+            } else {
+                console.error('Logout failed:', response.statusText);
+            }
+        } catch (error) {
+            console.error('Error occurred during logout:', error);
+        }
+    };
+
+    if (isLoginPage || isRegisterPage || role === 'admin') {
         return null;
     }
 
@@ -82,11 +104,22 @@ const Navbar = () => {
                             </div>
                         </ul>
 
+                        {role ? (
+    // If role has a value (user is logged in), render the logout icon
+                        <ul className="nav-item">
+                            <NavLink className="nav-link" to="/login">
+                                <img src="https://static-00.iconduck.com/assets.00/log-out-icon-2048x2048-cru8zabe.png" alt="Logout" />
+                            </NavLink>
+                        </ul>
+                    ) : (
+                        // If role is empty (user is not logged in), render the login icon
                         <ul className="nav-item">
                             <NavLink className="nav-link" to="/login">
                                 <img src="https://icons.veryicon.com/png/o/miscellaneous/domain-icons/my-account-login.png" alt="Login" />
                             </NavLink>
                         </ul>
+                    )}
+
                     </ul>
                 </div>
             </div>
