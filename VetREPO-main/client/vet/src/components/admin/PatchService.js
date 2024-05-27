@@ -1,8 +1,7 @@
 import React, { useState, useEffect } from 'react';
-
 import './PatchServices.css';
 
-const PatchProduct = () => {
+const PatchService = () => {
     const [products, setProducts] = useState([]);
     const [selectedProduct, setSelectedProduct] = useState(null);
     const [updatedProduct, setUpdatedProduct] = useState({
@@ -84,51 +83,53 @@ const PatchProduct = () => {
     };
 
     return (
-        <div className='update-products'>
-            <h2>Update Service</h2>
-            <select onChange={(e) => handleProductSelect(JSON.parse(e.target.value))}>
-                <option>Select Service</option>
-                {products.map((product) => (
-                    <option key={product.id} value={JSON.stringify(product)}>
-                        {product.name}
-                    </option>
-                ))}
-            </select>
-            {selectedProduct && (
-                <form onSubmit={handleSubmit}>
-                    <div>
-                        <label>Pet:</label>
-                        <input type="text" name="pet" value={updatedProduct.pet} onChange={handleChange} />
-                    </div>
-                    <div>
-                        <label>Name:</label>
-                        <input type="text" name="name" value={updatedProduct.name} onChange={handleChange} required />
-                    </div>
-                    <div>
-                        <label>Description:</label>
-                        <textarea name="description" value={updatedProduct.description} onChange={handleChange} required></textarea>
-                    </div>
-                    <div>
-                        <label>Price:</label>
-                        <input type="number" name="price" value={updatedProduct.price} onChange={handleChange} required />
-                    </div>
-                    <div>
-                        <label>Image URL:</label>
-                        <input type="text" name="image_url" value={updatedProduct.image_url} onChange={handleChange} required />
-                    </div>
-                    <div>
-                        <label>Quantity Available:</label>
-                        <input type="number" name="quantity_available" value={updatedProduct.quantity_available} onChange={handleChange} required />
-                    </div>
-                    <div>
-                        <label>Type:</label>
-                        <input type="text" name="type" value={updatedProduct.type} onChange={handleChange} required />
-                    </div>
-                    <button type="submit">Update Product</button>
-                </form>
-            )}
+        <div className='patch-product-box'>
+            <div className='update-products'>
+                <h2>Update Service</h2>
+                <select onChange={(e) => handleProductSelect(JSON.parse(e.target.value))}>
+                    <option>Select Service</option>
+                    {products.map((product) => (
+                        <option key={product.id} value={JSON.stringify(product)}>
+                            {product.name}
+                        </option>
+                    ))}
+                </select>
+                {selectedProduct && (
+                    <form onSubmit={handleSubmit}>
+                        <div>
+                            <label>Pet:</label>
+                            <input type="text" name="pet" value={updatedProduct.pet} onChange={handleChange} />
+                        </div>
+                        <div>
+                            <label>Name:</label>
+                            <input type="text" name="name" value={updatedProduct.name} onChange={handleChange} required />
+                        </div>
+                        <div>
+                            <label>Description:</label>
+                            <textarea name="description" value={updatedProduct.description} onChange={handleChange} required></textarea>
+                        </div>
+                        <div>
+                            <label>Price:</label>
+                            <input type="number" name="price" value={updatedProduct.price} onChange={handleChange} required />
+                        </div>
+                        <div>
+                            <label>Image URL:</label>
+                            <input type="text" name="image_url" value={updatedProduct.image_url} onChange={handleChange} required />
+                        </div>
+                        <div>
+                            <label>Quantity Available:</label>
+                            <input type="number" name="quantity_available" value={updatedProduct.quantity_available} onChange={handleChange} required />
+                        </div>
+                        <div>
+                            <label>Type:</label>
+                            <input type="text" name="type" value={updatedProduct.type} onChange={handleChange} required />
+                        </div>
+                        <button type="submit">Update Product</button>
+                    </form>
+                )}
+            </div>
         </div>
     );
 };
 
-export default PatchProduct;
+export default PatchService;

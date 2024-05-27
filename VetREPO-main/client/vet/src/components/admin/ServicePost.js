@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import './PostService.css' 
 
-const PostProduct = () => {
+const PostService = () => {
     const [product, setProduct] = useState({
         pet: '',
         name: '',
@@ -25,11 +25,11 @@ const PostProduct = () => {
             ...product,
             price: parseFloat(product.price),
             quantity_available: parseInt(product.quantity_available, 10),
-            type: String(product.type,)  // Ensure type is a string
+            type: String(product.type) // Ensure type is a string
         };
 
         try {
-            const response = await fetch('/adminproducts', {  // Corrected URL
+            const response = await fetch('/adminproducts', { // Corrected URL
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json'
@@ -60,85 +60,87 @@ const PostProduct = () => {
     };
 
     return (
-        <form className="post-product-form" onSubmit={handleSubmit}>
-            <div className="form-group">
-                <label className="form-label">Pet:</label>
-                <input
-                    className="form-input"
-                    type="text"
-                    name="pet"
-                    value={product.pet}
-                    onChange={handleChange}
-                />
-            </div>
-            <div className="form-group">
-                <label className="form-label">Name:</label>
-                <input
-                    className="form-input"
-                    type="text"
-                    name="name"
-                    value={product.name}
-                    onChange={handleChange}
-                    required
-                />
-            </div>
-            <div className="form-group">
-                <label className="form-label">Description:</label>
-                <textarea
-                    className="form-input"
-                    name="description"
-                    value={product.description}
-                    onChange={handleChange}
-                    required
-                ></textarea>
-            </div>
-            <div className="form-group">
-                <label className="form-label">Price:</label>
-                <input
-                    className="form-input"
-                    type="number"
-                    name="price"
-                    value={product.price}
-                    onChange={handleChange}
-                    required
-                />
-            </div>
-            <div className="form-group">
-                <label className="form-label">Image URL:</label>
-                <input
-                    className="form-input"
-                    type="text"
-                    name="image_url"
-                    value={product.image_url}
-                    onChange={handleChange}
-                    required
-                />
-            </div>
-            <div className="form-group">
-                <label className="form-label">Quantity Available:</label>
-                <input
-                    className="form-input"
-                    type="number"
-                    name="quantity_available"
-                    value={product.quantity_available}
-                    onChange={handleChange}
-                    required
-                />
-            </div>
-            <div className="form-group">
-                <label className="form-label">Type:</label>
-                <input
-                    className="form-input"
-                    type="text"
-                    name="type"
-                    value={product.type}
-                    onChange={handleChange}
-                    required
-                />
-            </div>
-            <button className="form-button" type="submit">Add SERVICE</button>
-        </form>
+        <div className="post-product-container"> {/* Wrapping container */}
+            <form className="post-product-form" onSubmit={handleSubmit}>
+                <div className="form-group">
+                    <label className="form-label">Pet:</label>
+                    <input
+                        className="form-input"
+                        type="text"
+                        name="pet"
+                        value={product.pet}
+                        onChange={handleChange}
+                    />
+                </div>
+                <div className="form-group">
+                    <label className="form-label">Name:</label>
+                    <input
+                        className="form-input"
+                        type="text"
+                        name="name"
+                        value={product.name}
+                        onChange={handleChange}
+                        required
+                    />
+                </div>
+                <div className="form-group">
+                    <label className="form-label">Description:</label>
+                    <textarea
+                        className="form-input"
+                        name="description"
+                        value={product.description}
+                        onChange={handleChange}
+                        required
+                    ></textarea>
+                </div>
+                <div className="form-group">
+                    <label className="form-label">Price:</label>
+                    <input
+                        className="form-input"
+                        type="number"
+                        name="price"
+                        value={product.price}
+                        onChange={handleChange}
+                        required
+                    />
+                </div>
+                <div className="form-group">
+                    <label className="form-label">Image URL:</label>
+                    <input
+                        className="form-input"
+                        type="text"
+                        name="image_url"
+                        value={product.image_url}
+                        onChange={handleChange}
+                        required
+                    />
+                </div>
+                <div className="form-group">
+                    <label className="form-label">Quantity Available:</label>
+                    <input
+                        className="form-input"
+                        type="number"
+                        name="quantity_available"
+                        value={product.quantity_available}
+                        onChange={handleChange}
+                        required
+                    />
+                </div>
+                <div className="form-group">
+                    <label className="form-label">Type:</label>
+                    <input
+                        className="form-input"
+                        type="text"
+                        name="type"
+                        value={product.type}
+                        onChange={handleChange}
+                        required
+                    />
+                </div>
+                <button className="form-button" type="submit">Add SERVICE</button>
+            </form>
+        </div>
     );
 };
 
-export default PostProduct;
+export default PostService;

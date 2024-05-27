@@ -40,48 +40,51 @@ function AdminNavBar() {
 
     return (
         <div className="sidebar">
-            <nav className="navbar navbar-dark bg-dark">
-                <div className="container">
-                    <ul className="navbar-nav">
-                        <ul className="nav-item">
-                            <Link to="/adminHome" className="nav-link">Admin Home</Link>
+            <nav className="admin-navbar">
+                <div className="admin-navbar_container">
+                    <ul className="admin-navbar_list">
+                        <ul className="admin-navbar__item">
+                            <Link to="/adminHome" className="admin-navbar_link">Admin Home</Link>
                         </ul>
-                        <ul className="nav-item">
-                            <Link to="/productPost" className="nav-link">Product Post</Link>
+                        <ul className="admin-navbar__item">
+                            <Link to="/productPost" className="admin-navbar_link">Product Post</Link>
                         </ul>
-                        <ul className="nav-item">
-                            <Link to="/ServicePost" className="nav-link">Service Post</Link>
+                        <ul className="admin-navbar__item">
+                            <Link to="/ServicePost" className="admin-navbar_link">Service Post</Link>
                         </ul>
-                        <ul className="nav-item">
-                            <Link to="/deleteProduct" className="nav-link">Delete Product</Link>
+                        <ul className="admin-navbar__item">
+                            <Link to="/deleteProduct" className="admin-navbar_link">Delete Product</Link>
                         </ul>
-                        <ul className="nav-item">
-                            <Link to="/deleteService" className="nav-link">Delete Service</Link>
+                        <ul className="admin-navbar__item">
+                            <Link to="/deleteService" className="admin-navbar_link">Delete Service</Link>
                         </ul>
-                        <ul className="nav-item">
-                            <Link to="/history" className="nav-link">History</Link>
+                        <ul className="admin-navbar__item">
+                            <Link to="/history" className="admin-navbar_link">History</Link>
                         </ul>
-                        <ul className="nav-item">
-                            <Link to="/patchProduct" className="nav-link">Update Product</Link>
+                        <ul className="admin-navbar__item">
+                            <Link to="/patchProduct" className="admin-navbar_link">Update Product</Link>
                         </ul>
-                        <ul className="nav-item">
-                            <Link to="/patchService" className="nav-link">Update Service</Link>
+                        <ul className="admin-navbar__item">
+                            <Link to="/patchService" className="admin-navbar_link">Update Service</Link>
                         </ul>
                     </ul>
                     {role ? (
-                        <ul className="nav-item bottom-icon">
-                            <button className="nav-link" onClick={handleAdminLogout}>
-                                <img src="https://static-00.iconduck.com/assets.00/log-out-icon-2048x2048-cru8zabe.png" alt="Logout" />
-                            </button>
+                        <ul className="admin-navbar_list admin-navbar__list--bottom">
+                            <li className="admin-navbar__item">
+                                <button className="admin-navbar_link" onClick={handleAdminLogout} to='/login'>
+                                    <img src="https://static-00.iconduck.com/assets.00/log-out-icon-2048x2048-cru8zabe.png" alt="Logout" />
+                                </button>
+                            </li>
                         </ul>
                     ) : (
-                        <ul className="nav-item bottom-icon">
-                            <NavLink className="nav-link" to="/login">
-                                <img src="https://icons.veryicon.com/png/o/miscellaneous/domain-icons/my-account-login.png" alt="Login" />
-                            </NavLink>
+                        <ul className="admin-navbar_list admin-navbar__list--bottom">
+                            <li className="admin-navbar__item">
+                                <NavLink className="admin-navbar__link" to="/login">
+                                    <img src="https://icons.veryicon.com/png/o/miscellaneous/domain-icons/my-account-login.png" alt="Login" />
+                                </NavLink>
+                            </li>
                         </ul>
                     )}
-
                 </div>
             </nav>
         </div>
