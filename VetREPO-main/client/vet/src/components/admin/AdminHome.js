@@ -1,4 +1,4 @@
-import './adminHome.css'
+// import './adminHome.css'
 
 // have components for reminders
 // notifications
@@ -15,4 +15,4 @@ function AdminHome(){
     )
 }
 
-export default AdminHome
+export default AdminHome;

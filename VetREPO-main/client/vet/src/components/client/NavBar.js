@@ -1,34 +1,25 @@
 import React, { useState, useEffect } from 'react';
 import { NavLink, useLocation } from 'react-router-dom';
-import './NavBar.css'; // Import the CSS file
+import './NavBar.css';
 
 const Navbar = () => {
     const location = useLocation();
-
-    // Check if the current path is login or register
     const isLoginPage = location.pathname === '/login';
     const isRegisterPage = location.pathname === '/register';
-    
-
-    // Cart items state
     const [cartItems, setCartItems] = useState([]);
+    const [role, setRole] = useState(null);
 
     useEffect(() => {
+        const storedRole = localStorage.getItem('role');
+        setRole(storedRole);
+
         // Fetch or set cart items here
-        // For now, let's set cart items to an empty array
         setCartItems([]);
     }, []);
 
-    // Calculate total quantity of items in the cart
     const totalQuantity = cartItems.reduce((acc, item) => acc + item.quantity, 0);
 
-    // Function to add item to cart
-    const addToCart = (item) => {
-        setCartItems([...cartItems, item]);
-    };
-
-    // Render the Navbar only if not on login or register page
-    if (isLoginPage || isRegisterPage) {
+    if (isLoginPage || isRegisterPage || role === 'client') {
         return null;
     }
 
@@ -86,7 +77,7 @@ const Navbar = () => {
                             <div className="cart-icon">
                                 <NavLink className="nav-link" to="/cart">
                                     <img src="https://iconape.com/wp-content/png_logo_vector/shopping-cart.png" alt="Cart" />
-                                    {totalQuantity > 0 && <span className="cart-count">{totalQuantity}</span>} {/* Display cart item count */}
+                                    {totalQuantity > 0 && <span className="cart-count">{totalQuantity}</span>}
                                 </NavLink>
                             </div>
                         </ul>
