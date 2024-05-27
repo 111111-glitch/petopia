@@ -454,7 +454,8 @@ class ShoppingCart(Resource):
             return {'error': str(e)}, 400
 
 
-api.add_resource(ShoppingCart, '/userCart')
+api.add_resource(ShoppingCart, '/userCart', '/userCart/<int:item_id>')
+
 
 class UserShippingDetails(Resource):
     @jwt_required()
