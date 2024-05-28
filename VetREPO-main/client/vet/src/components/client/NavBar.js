@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { NavLink, useLocation } from 'react-router-dom';
 import './NavBar.css';
+import SearchBar from '../SearchBar';
 
 const Navbar = () => {
     const location = useLocation();
@@ -83,7 +84,7 @@ const Navbar = () => {
                             </NavLink>
                         </ul>
 
-                        <form className="search-form">
+                        {/* <form className="search-form">
                             <input
                                 className="form-control"
                                 type="search"
@@ -93,7 +94,8 @@ const Navbar = () => {
                             <button className="search-button" type="submit">
                                 Search
                             </button>
-                        </form>
+                        </form> */}
+                        <SearchBar />
 
                         <ul className="nav-item">
                             <div className="cart-icon">
@@ -121,6 +123,7 @@ const Navbar = () => {
                     )}
 
                     </ul>
+                    
                 </div>
             </div>
         </nav>
