@@ -1,0 +1,19 @@
+/* adminHome.css */
+
+.main-dash {
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.primaryText h2{
+    font-size: 60px;
+    font-weight: bold;
+    color: #333; /* Adjust the color as needed */
+}
+
+.home-image {
+    margin-top: 20px; /* Adjust the margin as needed */
+}

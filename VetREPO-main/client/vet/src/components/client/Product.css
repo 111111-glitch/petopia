@@ -1,0 +1,71 @@
+.product-grid {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  margin-top: 20px;
+  }
+.product-grid > div{
+  margin: 20px;
+  width: calc(25% - 40px);
+  background-color: #fff;
+  border: 1px solid #ddd;
+  border-radius: 10px;
+  padding: 20px;
+  cursor: pointer;
+  transition: all 0.3s ease-in-out;
+}
+.product-grid > div:hover{
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+  transform: scale(1.05);
+}
+  .product-card {
+    padding: 16px;
+    width: 200px;
+    text-align: center;
+    transition: transform 0.3s ease;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+    background-color: #fff;
+    border: 1px solid #ddd;
+    border-radius: 10px;
+  }
+  
+  /* .product-card:hover {
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+    transform: scale(1.05);
+  } */
+  
+.product-image {
+    width: 2000%;
+    height: 200px;
+    object-fit: cover;
+    margin-bottom: 16px;
+}
+  
+.product-info {
+    margin-bottom: 16px;
+}
+  
+.addToCart {
+    text-align: center;
+    margin-top: 10px;
+}
+
+.addToCart button {
+    background-color: #d2b48c; /* Green background */
+    color: white; /* White text */
+    border: none; /* Remove borders */
+    padding: 10px 20px; /* Some padding */
+    text-align: center; /* Center the text (if possible) */
+    text-decoration: none; /* Remove underline */
+    display: inline-block; /* Make the container block element */
+    font-size: 16px; /* Increase font size */
+    margin: 4px 2px; /* Some margin */
+    cursor: pointer; /* Pointer/hand icon */
+    border-radius: 20px; /* Rounded corners */
+    transition-duration: 0.4s; /* 0.4 second transition effect to hover state */
+}
+
+.addToCart button:hover {
+    background-color: #332421; /* White background on hover */
+    color: white; /* Black text on hover */
+}

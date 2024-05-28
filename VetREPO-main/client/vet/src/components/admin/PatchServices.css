@@ -1,0 +1,90 @@
+/* PatchServices.css */
+
+.update-services-box {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+}
+
+.patch-product-box {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+}
+
+.update-services {
+  background-color: #d7c5b455; /* Changed to match the product form background */
+  border: 1px solid #ccc;
+  border-radius: 20px;
+  padding: 20px;
+  max-width: 600px; /* Adjust as needed */
+  width: 100%;
+}
+
+.update-services h2 {
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.update-services select {
+  width: 100%;
+  padding: 10px;
+  border-radius: 20px;
+  border: 1px solid #ccc;
+  margin-bottom: 20px;
+}
+
+.update-services select:hover {
+  background-color: #d2b48c; /* Changed to match the product form hover */
+  color: white;
+}
+
+.update-services select option {
+  background-color: #38241d; /* Changed to match the product form option background */
+  color: #fff;
+}
+
+.update-services select option:hover {
+  background-color: #1e1613; /* Changed to match the product form option hover */
+  color: #fff;
+}
+
+.update-services form div {
+  margin-bottom: 15px;
+}
+
+.update-services form label {
+  display: block;
+  font-weight: bold;
+  margin-bottom: 5px;
+}
+
+.update-services form input[type="text"],
+.update-services form input[type="number"],
+.update-services form textarea {
+  width: 100%;
+  padding: 8px;
+  border: 1px solid #ccc;
+  border-radius: 20px; /* Changed to match the product form border-radius */
+  box-sizing: border-box;
+}
+
+.update-services form textarea {
+  resize: vertical;
+}
+
+.update-services form button {
+  padding: 10px 20px;
+  border: none;
+  border-radius: 20px;
+  background-color: #d2b48c; /* Changed to match the product form background */
+  color: black;
+  cursor: pointer;
+}
+
+.update-services form button:hover {
+  background-color: #1e1613; /* Changed to match the product form hover */
+  color: white;
+}

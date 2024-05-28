@@ -1,0 +1,115 @@
+/* NavBar.css */
+
+.navbar {
+    background-color: #d7c5b455 !important;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    height: 100px;
+}
+
+.navbar-nav {
+    display: flex;
+    align-items: center;
+}
+.navbar-nav NavLink{
+ margin-top: 100px;
+}
+
+.navbar-brand {
+    font-size: 1.5rem;
+    font-weight: bold;
+    color: black !important;
+}
+
+.navbar-toggler {
+    border: none;
+}
+
+.navbar-toggler-icon {
+    background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' width='30' height='30' viewBox='0 0 30 30'%3e%3cpath stroke='rgba%28255, 111, 97, 1%29' stroke-linecap='round' stroke-miterlimit='10' stroke-width='2' d='M4 7h22M4 15h22M4 23h22'/%3e%3c/svg%3e");
+}
+
+.navbar-nav .nav-item .nav-link {
+    font-size: 1.2rem;
+    color: #343a40 !important;
+    padding: 0.5rem 1rem;
+    transition: color 0.3s;
+    margin-top: 20px;
+}
+
+.navbar-nav .nav-item .nav-link.active,
+.navbar-nav .nav-item .nav-link:hover {
+    color: black !important;
+}
+
+.search-form {
+    display: flex;
+    align-items: center;
+    margin-left: auto;
+    width: 500px;
+    margin-top: 40px;
+    margin-right: 400px;
+}
+
+.form-control {
+    width: 400px;
+    transition: width 0.5s;
+    border: 1px solid black;
+}
+
+.form-control:focus {
+    width: 300px;
+    border-radius: 20px;
+}
+
+.search-button {
+    font-size: 0.875rem;
+    padding: 0.5rem 0.5rem;
+    height: fit-content;
+    margin-left: -1px;
+    border-radius: 20px;
+    border: 1px solid black;
+    margin-bottom: 40px;
+    height: auto;
+    background: #d2b48c;
+}
+
+.search-button:hover {
+    background-color: #332421;
+    color: white;
+}
+
+.navbar-nav .nav-item .nav-link img {
+    width: 30px;
+    height: 30px;
+    margin-right: 40px;
+    margin-top: 10px;
+}
+
+/* Styling for the cart count badge */
+.cart-icon {
+    position: relative;
+    display: flex;
+    align-items: center;
+}
+
+.cart-icon img {
+    width: 30px;
+    height: 30px;
+    margin-right: 10px;
+}
+
+.cart-count {
+    position: absolute;
+    top: 0;
+    right: 0;
+    transform: translate(50%, -50%);
+    background-color: chocolate; /* Change background color to black */
+    color: #fff; /* Change text color to white */
+    border-radius: 50%;
+    padding: 2px 6px;
+    font-size: 0.8rem;
+    font-weight: bold;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}

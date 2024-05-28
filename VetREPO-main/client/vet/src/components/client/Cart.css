@@ -1,0 +1,197 @@
+
+/* Container for the cart page */
+.client-cart-page {
+  padding: 20px;
+  background-color: #f9f9f9;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+/* Styling for the empty cart section */
+.empty-cart {
+  text-align: center;
+  margin-top: 50px;
+}
+
+.empty-cart h2 {
+  font-size: 4rem;
+  color: #333;
+  margin-bottom: 20px;
+}
+
+.empty-cart img {
+  max-width: 600px;
+  width: 100%;
+  height: auto;
+}
+
+/* Styling for the cart titles row */
+.client-cart-titles {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+  padding: 10px;
+  background-color: #fff;
+  border-bottom: 1px solid #ddd;
+  margin-bottom: 10px;
+}
+
+.client-cart-titles h4 {
+  flex: 1;
+  text-align: center;
+  color: #333;
+}
+
+/* Styling for each cart item card */
+.client-cart-card {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  padding: 10px;
+  background-color: #fff;
+  border-bottom: 1px solid #ddd;
+  margin-bottom: 10px;
+}
+
+.product-details {
+  display: flex;
+  align-items: center;
+  flex: 2;
+}
+
+.product-details img {
+  width: 80px;
+  height: 80px;
+  object-fit: cover;
+  border-radius: 5px;
+  margin-right: 10px;
+}
+
+.product-name {
+  display: flex;
+  flex-direction: column;
+}
+
+.product-name p {
+  margin: 0;
+  font-size: 1rem;
+  color: #333;
+}
+
+.product-name button {
+  background: none;
+  border: none;
+  color: #ff6347;
+  cursor: pointer;
+  padding: 0;
+  margin-top: 5px;
+  text-align: left;
+}
+
+.product-name button:hover {
+  text-decoration: underline;
+}
+
+/* Styling for price, quantity, and total columns */
+.client-cart-card p, .quantity {
+  flex: 1;
+  text-align: center;
+  margin: 0;
+  color: #333;
+}
+
+.quantity {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.quantity button {
+  background-color: #ddd;
+  border: none;
+  padding: 5px 10px;
+  cursor: pointer;
+  font-size: 1rem;
+  margin: 0 5px;
+}
+
+.quantity button:disabled {
+  background-color: #ccc;
+}
+
+.quantity span {
+  font-size: 1rem;
+  margin: 0 10px;
+}
+
+.total-price {
+  color: #333;
+  font-weight: bold;
+}
+
+/* Styling for the subtotal and checkout section */
+.total {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+  padding: 10px;
+  background-color: #fff;
+  border-top: 1px solid #ddd;
+  margin-top: 10px;
+}
+
+.total h4 {
+  flex: 1;
+  text-align: center;
+  color: #333;
+}
+
+.checkout-button {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+  margin-top: 20px;
+}
+
+.checkout-button .button {
+  background-color: #d2b48c;
+  color: #fff;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 1rem;
+  transition: background-color 0.3s;
+}
+
+.checkout-button .button:hover {
+  background-color: #332421;
+}
+
+.checkout-button .error {
+  color: #ff6347;
+  margin-top: 10px;
+}
+
+.checkout-button .success {
+  color: #32cd32;
+  margin-top: 10px;
+}
+
+/* Styling for the continue shopping link */
+.continue-shopping {
+  margin-top: 20px;
+}
+
+.client-nav-link {
+  color: #d2b48c;
+  text-decoration: none;
+}
+
+.client-nav-link:hover {
+  text-decoration: underline;
+}

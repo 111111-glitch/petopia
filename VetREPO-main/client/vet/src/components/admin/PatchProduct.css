@@ -1,0 +1,88 @@
+/* PatchProduct.css */
+
+.patch-product-box {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+}
+
+.update-products {
+  background-color: #d7c5b455;
+  border: 1px solid #ccc;
+  border-radius: 20px;
+  padding: 20px;
+  max-width: 600px; /* Adjust as needed */
+  width: 100%;
+}
+
+.update-products h2 {
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.update-products select {
+  width: 100%;
+  padding: 10px;
+  border-radius: 20px;
+  border: 1px solid #ccc;
+  margin-bottom: 20px;
+}
+
+.update-products select:hover {
+  background-color: #d2b48c;
+  color: white;
+}
+
+.update-products select option {
+  background-color: #38241d;
+  color: #fff;
+}
+
+.update-products select option:hover {
+  background-color: #1e1613;
+  color: #fff;
+}
+
+.update-products form div {
+  margin-bottom: 15px;
+}
+
+.update-products form label {
+  display: block;
+  font-weight: bold;
+  margin-bottom: 5px;
+}
+.update-products form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.update-products form input[type="text"],
+.update-products form input[type="number"],
+.update-products form textarea {
+  width: 500px;
+  padding: 12px;
+  border: 1px solid #ccc;
+  border-radius: 20px;
+  box-sizing: border-box;
+}
+
+.update-products form textarea {
+  resize: vertical;
+}
+
+.update-products form button {
+  padding: 10px 20px;
+  border: none;
+  border-radius: 20px;
+  background-color: #d2b48c;
+  color: black;
+  cursor: pointer;
+}
+
+.update-products form button:hover {
+  background-color: #1e1613;
+  color: white;
+}
