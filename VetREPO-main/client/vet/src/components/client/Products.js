@@ -1,10 +1,12 @@
 import React, { useState, useEffect } from 'react';
 import './Product.css';
+import { useNavigate } from 'react-router-dom';
 
 const Products = ({ addToCart }) => {
   const [products, setProducts] = useState([]);
-  const [selectedProduct, setSelectedProduct] = useState(null);
+  // const [selectedProduct, setSelectedProduct] = useState(null);
   const [sortOption, setSortOption] = useState('Default');
+  const navigate=useNavigate();
 
   useEffect(() => {
     fetch('/userproducts')
@@ -16,7 +18,8 @@ const Products = ({ addToCart }) => {
   }, []);
 
   const handleProductClick = (product) => {
-    setSelectedProduct(product);
+    // setSelectedProduct(product);
+    navigate(`/product/${product.id}`);
   };
 
   const fetchCartItems = async () => {
@@ -111,11 +114,10 @@ const Products = ({ addToCart }) => {
               <p>{product.description}</p>
               <p>Price: ksh{product.price}</p>
             </div>
-            {selectedProduct && selectedProduct.id === product.id && (
               <div className="addToCart">
                 <button onClick={() => handleAddToCart(product)}>Add to Cart</button>
               </div>
-            )}
+           
           </div>
         ))}
       </div>

@@ -541,7 +541,7 @@ def get_post_update_and_delete_products():
     products = Product.query.all()
 
     if request.method == 'GET':
-        return jsonify([product.to_dict for product in products]), 200
+        return jsonify([product.to_dict() for product in products]), 200
     
     if request.method == 'POST':
         data = request.json

@@ -2,6 +2,8 @@ import React, { useState, useEffect } from 'react';
 import './Cart.css';
 import { NavLink } from 'react-router-dom';
 
+import { FlutterWaveButton, closePaymentModal } from 'flutterwave-react-v3';
+
 function Cart() {
     const [cartItems, setCartItems] = useState([]);
     const [loading, setLoading] = useState(false);
@@ -146,6 +148,41 @@ function Cart() {
         return total + item.price * item.quantity;
     }, 0);
 
+    // Pseudo user data
+    const email = "julimurag@gmail.com";
+    const phone_number = "07012345678";
+    const name = "Julius";
+
+
+    const config = {
+        public_key: 'FLWPUBK_TEST-f0cd2c19f60c7ce7cacad539d983df19-X',
+        tx_ref: Date.now(),
+        amount: total, 
+        currency: 'KES',
+        payment_options: 'card,mobilemoney,ussd',
+        customer: {
+          email,
+          phone_number,
+          name,
+        },
+        customizations: {
+          title: 'Payment',
+          description: 'Payment for items in cart',
+          logo: 'https://i.pinimg.com/236x/5a/c3/6c/5ac36ca9f1faf1211c0ec9d743e835e3.jpg',
+        },
+    };
+    
+      const fwConfig = {
+        ...config,
+        text: 'Make Payment',
+        callback: (response) => {
+           console.log(response);
+          closePaymentModal() // this will close the modal programmatically
+        },
+        onClose: () => {},
+      };
+
+
     return (
         <div className="client-cart-page">
             {cartItems.length === 0 ? (
@@ -190,7 +227,7 @@ function Cart() {
                         </div>
                         <div className="checkout-button">
                             <button className='button' onClick={handlePlaceOrder} disabled={loading}>
-                                {loading ? 'Processing...' : 'Checkout'}
+                            <FlutterWaveButton {...fwConfig} />
                             </button>
                             {error && <p className="error">{error}</p>}
                             {success && <p className="success">Order placed successfully!</p>}

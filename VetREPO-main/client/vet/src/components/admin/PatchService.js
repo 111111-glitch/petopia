@@ -18,7 +18,7 @@ const PatchService = () => {
         // Fetch products from the backend
         const fetchProducts = async () => {
             try {
-                const response = await fetch('/userproducts');
+                const response = await fetch('/adminproducts');
                 if (response.ok) {
                     const data = await response.json();
                     const filteredServices = data.filter(item => item.type === 'service');
@@ -61,7 +61,7 @@ const PatchService = () => {
         };
 
         try {
-            const response = await fetch(`/userproducts/${selectedProduct.id}`, {
+            const response = await fetch(`/adminproducts/${selectedProduct.id}`, {
                 method: 'PATCH',
                 headers: {
                     'Content-Type': 'application/json'

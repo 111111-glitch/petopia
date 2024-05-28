@@ -1,10 +1,12 @@
 import React, { useState, useEffect } from 'react';
 import './Services.css';
+import { useNavigate } from 'react-router-dom';
 
 const Services = ({ addToCart }) => {
   const [services, setServices] = useState([]);
-  const [selectedService, setSelectedService] = useState(null);
+  // const [selectedService, setSelectedService] = useState(null);
   const [sortOption, setSortOption] = useState('Default');
+  const navigate=useNavigate();
 
   useEffect(() => {
     fetch('/userproducts')
@@ -38,7 +40,8 @@ const Services = ({ addToCart }) => {
   };
 
   const handleServiceClick = (service) => {
-    setSelectedService(service);
+    // setSelectedService(service);
+    navigate(`/service/${service.id}`)
   };
 
   const handleAddToCart = async (service) => {
@@ -105,11 +108,11 @@ const Services = ({ addToCart }) => {
               <p>Price: ksh{service.price}</p>
               <p>{service.description}</p>
             </div>
-            {selectedService && selectedService.id === service.id && (
+            
               <div className='addToCart'>
                 <button onClick={() => handleAddToCart(service)}>Add to Cart</button>
               </div>
-            )}
+            
           </div>
         ))}
       </div>

@@ -76,6 +76,18 @@ class Product(db.Model, SerializerMixin):
 
     def __repr__(self):
         return f'<Product {self.name} from seller {self.seller_id}>'
+    #new update
+    def to_dict(self):
+        return {
+            'id': self.id,
+            'pet': self.pet,
+            'name': self.name,
+            'description': self.description,
+            'price': self.price,
+            'image_url': self.image_url,
+            'quantity_available': self.quantity_available,
+            'type': self.type
+        }
 
 class ProductOrder(db.Model, SerializerMixin):
     __tablename__ = "productorders"
